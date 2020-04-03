@@ -79,6 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\UsefulTools.cs" />
     <Compile Include="UnitTests\OptionsPricerTests.cs" />
     <Compile Include="Views\AutoFocusTextBox.cs" />
     <Compile Include="Views\TextBoxBehavior.cs" />

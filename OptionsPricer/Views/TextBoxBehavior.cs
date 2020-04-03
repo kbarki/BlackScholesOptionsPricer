@@ -37,7 +37,7 @@ namespace OptionsPricerGUI.Views
             if (isNumericInput == null || textBox == null)
                 return;
 
-            if (isNumericInput ?? false)
+            if ((bool) isNumericInput)
             {
                 textBox.PreviewTextInput += OnNumericInputPreviewTextInputHandler;
             }

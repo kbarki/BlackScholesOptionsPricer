@@ -55,20 +55,62 @@ namespace OptionsPricerGUI.ViewModels
             }
         }
 
+        private string _appStatus;
+
+        public string AppStatus
+        {
+            get { return _appStatus; }
+            set 
+            { 
+                _appStatus = value; 
+            }
+        }
+
+
         public void ComputeOptionsPrice()
         {
-            CallOption callOption = new CallOption();
-            Call = callOption.GetOptionData(Inputs);
+            try
+            {
+                if (!UsefulTools.IsBlackScholesVariablesValid(Inputs.InputParametersDict.Values.ToList()))
+                {
+                    UpdateAppStatus("Invalid input, Please enter all five variables.");
+                    return;
+                }
 
-            PutOption putOption = new PutOption();
-            Put = putOption.GetOptionData(Inputs);
+                CallOption callOption = new CallOption();
+                Call = callOption.GetOptionData(Inputs);
+
+                PutOption putOption = new PutOption();
+                Put = putOption.GetOptionData(Inputs);
+
+                UpdateAppStatus("Compute operation successfully completed.");
+            }
+            catch (Exception ex)
+            {
+                UpdateAppStatus(ex.Message);
+            }
         }
 
         public void Reset()
         {
-            Inputs = new BlackScholesParametersModel();
-            Call = null;
-            Put = null;
+            try
+            {
+                Inputs = new BlackScholesParametersModel();
+                Call = null;
+                Put = null;
+
+                UpdateAppStatus("Reset operation successfully completed.");
+            }
+            catch (Exception ex)
+            {
+                UpdateAppStatus(ex.Message);
+            }
+        }
+
+        private void UpdateAppStatus(string msg)
+        {
+            AppStatus = msg;
+            NotifyOfPropertyChange(() => AppStatus);
         }
     }
 }

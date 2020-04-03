@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OptionsPricerGUI.Views"
         mc:Ignorable="d" FontSize="18"
-        Title="Black Scholes Options Pricer" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+        Title="Black Scholes Options Pricer" Height="480" Width="500" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -16,6 +16,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -52,7 +53,7 @@
         <local:AutoFocusTextBox Grid.Row="6" Grid.Column="2" Margin="15 0 0 0" Text="{Binding Path=Inputs.InterestRate, Mode=TwoWay}" local:TextBoxBehavior.IsNumericInput="True" />
 
         <!-- Row 7 -->
-        <Separator Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="100 0 100 20" />
+        <Separator Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="100 0 100 10" />
         <TextBlock Grid.Row="7" Grid.Column="1" Margin="0 50 0 0" TextAlignment="Right"> Call</TextBlock>
         <local:AutoFocusTextBox Grid.Row="7" Grid.Column="2" Margin="15 50 0 5" IsReadOnly="True" Text="{Binding Path=Call.Value, Mode=OneWay}"/>
 
@@ -61,7 +62,15 @@
         <local:AutoFocusTextBox Grid.Row="8" Grid.Column="2" Margin="15 0 0 0" IsReadOnly="True"  Text="{Binding Path=Put.Value, Mode=OneWay}"/>
 
         <!-- Row 9 -->
-        <Button Grid.Row="9" Grid.Column="1"  Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="Reset">Reset</Button>
-        <Button Grid.Row="9" Grid.Column="2"  Width="100" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="ComputeOptionsPrice"> Calculate</Button>
+        <Button Grid.Row="9" Grid.Column="1"  Width="100" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="Reset" Margin="0 20 0 0">Reset</Button>
+        <Button Grid.Row="9" Grid.Column="2"  Width="100" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="ComputeOptionsPrice" Margin="0 20 0 0"> Calculate</Button>
+        
+        <!-- Row 10 -->
+        <StatusBar Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0" Height="25">
+            <StatusBarItem TextBlock.TextAlignment="Left">
+                <TextBlock Text="{Binding Path=AppStatus}" />
+            </StatusBarItem>
+        </StatusBar>
+        
     </Grid>
 </Window>

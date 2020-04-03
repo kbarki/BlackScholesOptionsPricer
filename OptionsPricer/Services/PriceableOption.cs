@@ -12,11 +12,18 @@ namespace OptionsPricerGUI.Services
 
         public OptionModel GetOptionData(BlackScholesParametersModel inputs)
         {
-            double d1 = ComputeD1(inputs);
-            double d2 = ComputeD2(inputs, d1);
-            double optionPrice = ComputeOptionPrice(inputs, d1, d2);
+            try
+            {
+                double d1 = ComputeD1(inputs);
+                double d2 = ComputeD2(inputs, d1);
+                double optionPrice = ComputeOptionPrice(inputs, d1, d2);
 
-            return new OptionModel(OptionType, optionPrice);
+                return new OptionModel(OptionType, optionPrice);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         protected abstract double ComputeOptionPrice(BlackScholesParametersModel inputs, double d1, double d2);
